@@ -36,7 +36,6 @@ class RouteServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->configureRateLimiting();
-
         $this->routes(function () {
             Route::prefix('api')
                 ->middleware('api')
@@ -57,7 +56,15 @@ class RouteServiceProvider extends ServiceProvider
     protected function configureRateLimiting()
     {
         RateLimiter::for('api', function (Request $request) {
-            return Limit::perMinute(60)->by(optional($request->user())->id ?: $request->ip());
+            //return Limit::perMinute(60)->by(optional($request->user())->id ?: $request->ip());
+            //to stop error 429 too many request for testing purposes
+            return Limit::none();
         });
+
+        // no limit throttle
+        RateLimiter::for('none', function (Request $request) {
+            return Limit::none();
+        });
+
     }
 }

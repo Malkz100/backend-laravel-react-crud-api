@@ -35,7 +35,7 @@ class ProductController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function store(Request $request)
     {
@@ -56,7 +56,7 @@ class ProductController extends Controller
         }catch(\Exception $e){
             \Log::error($e->getMessage());
             return response()->json([
-                'message'=>'Something goes wrong while creating a product!!'
+                'message'=>'Something went wrong while creating a product!!'
             ],500);
         }
     }
@@ -65,7 +65,7 @@ class ProductController extends Controller
      * Display the specified resource.
      *
      * @param  \App\Models\Product  $product
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function show(Product $product)
     {
@@ -90,7 +90,7 @@ class ProductController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Models\Product  $product
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function update(Request $request, Product $product)
     {
@@ -127,7 +127,7 @@ class ProductController extends Controller
         }catch(\Exception $e){
             \Log::error($e->getMessage());
             return response()->json([
-                'message'=>'Something goes wrong while updating a product!!'
+                'message'=>'Something went wrong while updating a product!!'
             ],500);
         }
     }
@@ -136,7 +136,7 @@ class ProductController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  \App\Models\Product  $product
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function destroy(Product $product)
     {
@@ -154,11 +154,11 @@ class ProductController extends Controller
             return response()->json([
                 'message'=>'Product Deleted Successfully!!'
             ]);
-            
+
         } catch (\Exception $e) {
             \Log::error($e->getMessage());
             return response()->json([
-                'message'=>'Something goes wrong while deleting a product!!'
+                'message'=>'Something went wrong while deleting a product!!'
             ]);
         }
     }
